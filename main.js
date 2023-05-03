@@ -6,12 +6,21 @@ const userList = document.querySelector("#users");
 
 myForm.addEventListener("submit", onsubmit);
 
+const errorThrow = (bool) => {
+  if (bool === true) {
+    msg.classList.add("error");
+    msg.innerHTML = "Please enter all fields";
+  } else {
+    msg.classList.remove("error");
+    msg.innerHTML = "";
+  }
+};
+
 function onsubmit(e) {
   e.preventDefault();
   if (nameInput.value === "" || emailInput.value === "") {
-    msg.classList.add("error");
-    msg.innerHTML = "Please enter all fields";
-    setTimeout(() => msg.remove(), 3000);
+    errorThrow(true);
+    setTimeout(() => errorThrow(false), 3000);
   } else {
     const li = document.createElement("li");
     li.appendChild(
